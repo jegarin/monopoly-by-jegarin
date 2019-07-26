@@ -1,0 +1,98 @@
+html, body {
+  background-color: #ebcb4f; 
+  font-size: 30px;
+}
+
+p {
+  margin-top: 10px;
+}
+
+#page-title {
+  margin: 20px auto 0px;
+  /* border: 2px solid red; */
+  text-align: center;
+}
+
+#page-layout {
+  display: grid;
+  grid-template-columns: [page-start] 800px [board-end] auto [amount-end];
+  grid-gap: 5px;
+  border: 2px solid purple;
+}
+
+#monopoly-board {
+  margin-left: 150px;
+  width: 615px;
+  display: grid;
+  grid-template-columns: [board-start square-6-11] 100px [square-5-12] 100px [square-4-13] 100px [square-3-14] 100px [square-2-15] 100px [square-1-16] 100px [board-end];
+  grid-template-rows: repeat(6, 100px);
+  grid-gap: 3px;
+  font-size: 1em;
+  color: black;
+  /* border: 2px solid red; */
+}
+
+#monopoly-board div {
+    border-radius: 5px;
+}
+
+#sqr-central {
+  grid-column-start: square-5-12;
+  grid-column-end: square-1-16;
+  grid-row-start: 2;
+  grid-row-end: 6;
+  background-color: black;
+}
+
+.bank-container {
+  grid-column-start: amount-end;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  /* border: 2px solid blue; */
+}
+
+.player1-container {
+  grid-column-start: amount-end;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+  /* border: 2px solid blue; */
+}
+
+#player1-square {
+  width: 25px;
+  height: 25px;
+  background: red;
+  margin: 0 auto;
+}
+
+.btn {
+  font-size: 1.2em; 
+  text-align:center;
+  border-radius: 8px;
+  color: white;
+  padding: 5px;
+}
+
+#start-btn {
+  background-color: red;
+}
+
+#play-btn {
+  background-color: blue;
+}
+
+#monopoly-board > div:nth-child(1n) {
+  background-color: #96ceb4;	
+}
+
+#monopoly-board > div:nth-child(3n) {
+  background-color: #88d8b0;
+}
+
+#monopoly-board > div:nth-child(2n) {
+      background-color: #ff6f69;
+}
+
+#monopoly-board > div:nth-child(4n) {
+      background-color: #ffcc5c;
+}
