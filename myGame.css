@@ -1,68 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Mako&display=swap');
+
 html, body {
-  background-color: #ebcb4f; 
-  font-size: 30px;
+  font-size: 20px;
+  background: url(./img/monopolyPattern.jpg) paleturquoise;
+  
 }
 
-p {
-  margin-top: 10px;
+h2 {
+  margin-bottom: 0;
 }
 
 #page-title {
-  margin: 20px auto 0px;
-  /* border: 2px solid red; */
+  margin: 5px auto 5px;
   text-align: center;
+  font-family: Mako, Arial, Helvetica, sans-serif;
+  color: white;
+  background-color: #e61710;
+  width: 45%;
+  border: 3px solid white;
+  border-radius: 10px;
 }
 
 #page-layout {
   display: grid;
-  grid-template-columns: [page-start] 800px [board-end] auto [amount-end];
+  grid-template-columns: [page-start] 800px [board-end] 1fr [amount-end];
   grid-gap: 5px;
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
 }
 
 #monopoly-board {
   margin-left: 150px;
   width: 615px;
   display: grid;
-  grid-template-columns: [board-start square-6-11] 100px [square-5-12] 100px [square-4-13] 100px [square-3-14] 100px [square-2-15] 100px [square-1-16] 100px [board-end];
+  grid-template-columns: [board-start square-5-10] 100px [square-4-11] 100px [square-3-12] 100px [square-2-13] 100px [square-1-14] 100px [square-0-16] 100px [board-end];
   grid-template-rows: repeat(6, 100px);
   grid-gap: 3px;
   font-size: 1em;
-  color: black;
+  /* color: black; */
   /* border: 2px solid red; */
 }
 
-#monopoly-board div {
-    border-radius: 5px;
+
+#monopoly-board > div {
+  border: 2px solid black;
+  border-radius: 5px;
+  background: whitesmoke;
+  font-family: Mako, Arial, Helvetica, sans-serif;
+  font-size: 0.5rem;
+  text-align: center;
+  padding: 2px;
 }
 
-#sqr-central {
-  grid-column-start: square-5-12;
-  grid-column-end: square-1-16;
+div > #sqr-central {
+  background-image: url(./img/kisspng-telegram-sticker-messaging-apps-monopoly.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 400px;
+  grid-column-start: square-4-11;
+  grid-column-end: square-0-16;
   grid-row-start: 2;
   grid-row-end: 6;
-  background-color: black;
 }
 
-.bank-container {
-  grid-column-start: amount-end;
-  grid-column-end: span 1;
-  grid-row-start: 1;
-  /* border: 2px solid blue; */
+/* squares style */
+
+#square-title{
+  font-style: italic;
+  font-size: 0.55rem;
+  font-weight: bold;
 }
 
-.player1-container {
-  grid-column-start: amount-end;
-  grid-column-end: span 1;
-  grid-row-start: 2;
-  /* border: 2px solid blue; */
+.green-deed {
+  color: green;
+  font-weight: bold;
+}
+.red-deed {
+  color: red;
+  font-weight: bold;
+}
+.purple-deed {
+  color: purple;
+  font-weight: bold;
+}
+.blue-deed {
+  color: blue;
+  font-weight: bold;
 }
 
-#player1-square {
-  width: 25px;
-  height: 25px;
-  background: red;
-  margin: 0 auto;
+/* game settings */
+
+#game-set{
+  background: #FFEEA2;
 }
 
 .btn {
@@ -71,28 +99,52 @@ p {
   border-radius: 8px;
   color: white;
   padding: 5px;
+  cursor: pointer;
 }
 
 #start-btn {
+  background-color: green;
+  transition: 0.3s ease-in;
+}
+
+#start-btn:hover {
+  background-color: greenyellow;
+  color:  #666699;
+}
+
+#roll-btn {
+  background-color: #8080ff;
+  transition: 0.3s ease-in;
+}
+
+#roll-btn:hover {
+  background-color: #1919ff;
+  color:  #ffff66;
+}
+
+/*
+.bank-container {
+  grid-column-start: amount-end;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  border: 2px solid blue; 
+}
+
+.set-space {
+  grid-column-start: amount-end;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+  border: 2px solid blue; 
+}*/
+
+#player1-square{
+  width: 45px;
+  height: 10px;
+  margin: 2px auto 0;
   background-color: red;
 }
 
-#play-btn {
-  background-color: blue;
-}
-
-#monopoly-board > div:nth-child(1n) {
-  background-color: #96ceb4;	
-}
-
-#monopoly-board > div:nth-child(3n) {
-  background-color: #88d8b0;
-}
-
-#monopoly-board > div:nth-child(2n) {
-      background-color: #ff6f69;
-}
-
-#monopoly-board > div:nth-child(4n) {
-      background-color: #ffcc5c;
+#register-text {
+  padding: 0;
+  margin: 0 0 0 1015px;
 }
