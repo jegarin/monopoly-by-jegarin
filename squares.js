@@ -102,32 +102,276 @@ function incomeTax(player) {
 
 function blueTitleDeed(player){
   // buy $1350 - rent $50
-  // check if has ownwer ? pay rent : buy the propertie;
-  if(player.position === 3){
+  // check if has ownwer ? pay rent : buy the property;
+  if(player.position === 1){
     console.log('Here is Park Place');
     console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
-      square[player.position].playerOwner = player.name;
+      square[player.position].playerOwner = player.turn;
       square[player.position].hasOwner = true; 
-      player.updateCash(-1350);
+      player.updateCash(-350);
+      //  paint the border with the owner color
+      const ownerMark = document.querySelector('#sqr-1')
+      markOwner(player.turn, ownerMark);
+      console.log('Congrats! You bought a new property!')
     } 
-    else if(!square[player.position].playerOwner === player.name)  {
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
       //pay rent
-      player.updateCash(-50);
+      player.updateCash(-70);
+        switch (square[player.position].playerOwner) {
+          case 1:
+            player1.updateCash(70);
+            // console.log('p1 recebeu aluguel')
+            break;
+          case 2:
+            player2.updateCash(70);
+            // console.log('p2 recebeu aluguel')
+            break;
+          case 3:
+            player3.updateCash(70);
+            // console.log('p3 recebeu aluguel')
+            break;
+          case 4:
+            player4.updateCash(70);
+            // console.log('p4 recebeu aluguel')
+            break;
+          default:
+            console.log('error to pay the rent');
+        }
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
     }
   }
   else {
-    console.log('Here is Broadwalk');
-    console.log(square[player.position].hasOwner)
+      console.log('Here is Broadwalk');
+      console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
-      // buy the prop
-    square[player.position].hasOwner = true
-    player.updateCash(-1750);
+      // buy the prop and mark as owner
+      square[player.position].playerOwner = player.turn;
+      square[player.position].hasOwner = true
+      player.updateCash(-750);
+      //  paint the border with the owner color
+      const ownerMark = document.querySelector('#sqr-3')
+      markOwner(player.turn, ownerMark);
+      console.log('Congrats! You bought a new property!')
     }
-    else if (!square[player.position].playerOwner === player.name) {
-    //  pay rent
-    player.updateCash(-75);
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
+      //pay rent
+      player.updateCash(-70);
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
     }
   }
 };
+
+function redTitleDeed(player){
+  // buy $1350 - rent $50
+  // check if has ownwer ? pay rent : buy the property;
+  if(player.position === 6){
+    console.log('Here is Illinois Avenue');
+    console.log(square[player.position].hasOwner)
+    if(!square[player.position].hasOwner) {
+      // buy the prop and mark as owner
+      square[player.position].playerOwner = player.turn;
+      square[player.position].hasOwner = true; 
+      player.updateCash(-350);
+      //  paint the border with the owner color
+      const ownerMark = document.querySelector('#sqr-6')
+      markOwner(player.turn, ownerMark);
+      console.log('Congrats! You bought a new property!')
+    } 
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
+      //pay rent
+      player.updateCash(-70);
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
+    }
+  }
+  else {
+    console.log('Indiana Avenue');
+    console.log(square[player.position].hasOwner)
+    if(!square[player.position].hasOwner) {
+    // buy the prop and mark as owner
+    square[player.position].playerOwner = player.turn;
+    square[player.position].hasOwner = true
+    player.updateCash(-150);
+    //  paint the border with the owner color
+    const ownerMark = document.querySelector('#sqr-8')
+    markOwner(player.turn, ownerMark);
+    console.log('Congrats! You bought a new property!')
+    }
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
+      //pay rent
+      player.updateCash(-70);
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
+    }
+  }
+}
+
+function purpleTitleDeed(player){
+  // buy $1350 - rent $50
+  // check if has ownwer ? pay rent : buy the property;
+  if(player.position === 11){
+    console.log('Here is Marvin Gardens');
+    console.log(square[player.position].hasOwner)
+    if(!square[player.position].hasOwner) {
+      // buy the prop and mark as owner
+      square[player.position].playerOwner = player.turn;
+      square[player.position].hasOwner = true; 
+      player.updateCash(-350);
+      //  paint the border with the owner color
+      const ownerMark = document.querySelector('#sqr-11')
+      markOwner(player.turn, ownerMark);
+      console.log('Congrats! You bought a new property!')
+    } 
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
+      //pay rent
+      player.updateCash(-70);
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
+    }
+  }
+  else if (player.position === 13) {
+    console.log('Here is Ventnor Avenue');
+    console.log(square[player.position].hasOwner)
+    if(!square[player.position].hasOwner) {
+      // buy the prop and mark as owner
+      square[player.position].playerOwner = player.turn;
+      square[player.position].hasOwner = true
+      player.updateCash(-110);
+      //  paint the border with the owner color
+      const ownerMark = document.querySelector('#sqr-13')
+      markOwner(player.turn, ownerMark);
+      console.log('Congrats! You bought a new property!')
+    }
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
+      //pay rent
+      player.updateCash(-70);
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
+    }
+  }
+  else {
+      console.log('Here is Atlantic Avenue');
+      console.log(square[player.position].hasOwner)
+    if(!square[player.position].hasOwner) {
+      // buy the prop and mark as owner
+      square[player.position].playerOwner = player.turn;
+      square[player.position].hasOwner = true
+      player.updateCash(-110);
+      //  paint the border with the owner color
+      const ownerMark = document.querySelector('#sqr-14')
+      markOwner(player.turn, ownerMark);
+      console.log('Congrats! You bought a new property!')
+    }
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
+      //pay rent
+      player.updateCash(-70);
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
+    }
+  }
+}
+
+function greenTitleDeed(player){
+  // buy $1350 - rent $50
+  // check if has ownwer ? pay rent : buy the property;
+  if(player.position === 17){
+    console.log('Here is Pacific Avenue');
+    console.log(square[player.position].hasOwner)
+    if(!square[player.position].hasOwner) {
+      // buy the prop and mark as owner
+      square[player.position].playerOwner = player.turn;
+      square[player.position].hasOwner = true; 
+      player.updateCash(-350);
+      //  paint the border with the owner color
+      const ownerMark = document.querySelector('#sqr-17')
+      markOwner(player.turn, ownerMark);
+      console.log('Congrats! You bought a new property!')
+    } 
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
+      //pay rent
+      player.updateCash(-70);
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
+    }
+  }
+  else {
+    console.log('Here is Pennsylvania Avenue');
+    console.log(square[player.position].hasOwner)
+    if(!square[player.position].hasOwner) {
+    // buy the prop and mark as owner
+    square[player.position].playerOwner = player.turn;
+    square[player.position].hasOwner = true
+    player.updateCash(-1150);
+    //  paint the border with the owner color
+    const ownerMark = document.querySelector('#sqr-19')
+    markOwner(player.turn, ownerMark);
+    console.log('Congrats! You bought a new property!')
+    }
+    else if(square[player.position].playerOwner === player.turn)  {
+      console.log('This is your property.');
+    }
+    else {
+      //pay rent
+      player.updateCash(-70);
+      console.log('pay the rent!')
+      console.log(square[player.position].playerOwner)
+      console.log(player.name)
+    }
+  }
+}
+
+
+function markOwner(n1, n2) {
+  switch (n1){
+    case 1:
+        n2.style.border = '3px solid #ffa500';
+        break;
+    case 2: 
+        n2.style.border = '3px solid #5c5cd6';
+        break;
+    case 3:
+        n2.style.border = '3px solid #d55d5d';
+        break;
+    case 4 :
+        n2.style.border = '3px solid #e600e6';
+        break;
+    default :
+        pn2.style.border = '3px solid black';
+  };
+}

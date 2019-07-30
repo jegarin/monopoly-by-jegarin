@@ -7,7 +7,11 @@ html, body {
 }
 
 h2 {
-  margin-bottom: 0;
+  margin: 0;
+}
+
+.players {
+  margin-top: 20px;
 }
 
 #page-title {
@@ -23,15 +27,18 @@ h2 {
 
 #page-layout {
   display: grid;
-  grid-template-columns: [page-start] 800px [board-end] 1fr [amount-end];
-  grid-gap: 5px;
+  margin-top: 20px;
+  grid-template-columns: [page-start] 800px [board-end] auto [set-line] auto [page-end];
+  grid-gap: 1px;
   /* border: 2px solid purple; */
 }
 
 #monopoly-board {
-  margin-left: 150px;
-  width: 615px;
+  margin-left: 50px;
+  box-sizing: border-box;
+  width: 640px;
   display: grid;
+  justify-content: center;
   grid-template-columns: [board-start square-5-10] 100px [square-4-11] 100px [square-3-12] 100px [square-2-13] 100px [square-1-14] 100px [square-0-16] 100px [board-end];
   grid-template-rows: repeat(6, 100px);
   grid-gap: 3px;
@@ -51,6 +58,7 @@ h2 {
   padding: 2px;
 }
 
+
 div > #sqr-central {
   background-image: url(./img/kisspng-telegram-sticker-messaging-apps-monopoly.jpg);
   background-size: contain;
@@ -64,10 +72,11 @@ div > #sqr-central {
 
 /* squares style */
 
-#square-title{
+.square-title{
   font-style: italic;
   font-size: 0.55rem;
   font-weight: bold;
+  margin: 0 auto;
 }
 
 .green-deed {
@@ -87,11 +96,16 @@ div > #sqr-central {
   font-weight: bold;
 }
 
+.square {
+  position: relative;
+}
+
+
 /* game settings */
 
-#game-set{
+/* #game-set{
   background: #FFEEA2;
-}
+} */
 
 .btn {
   font-size: 1.2em; 
@@ -112,37 +126,107 @@ div > #sqr-central {
   color:  #666699;
 }
 
-#roll-btn {
-  background-color: #8080ff;
+#roll-btn-player1 {
+  background-color: #ffa500;
   transition: 0.3s ease-in;
 }
 
-#roll-btn:hover {
-  background-color: #1919ff;
+#roll-btn-player1:hover {
+  background-color: #b37400;
   color:  #ffff66;
+  transform: scale(1.05);
 }
 
-/*
-.bank-container {
-  grid-column-start: amount-end;
-  grid-column-end: span 1;
-  grid-row-start: 1;
-  border: 2px solid blue; 
+#roll-btn-player2 {
+  background-color: #5c5cd6;
+  transition: 0.3s ease-in;
 }
 
-.set-space {
-  grid-column-start: amount-end;
-  grid-column-end: span 1;
-  grid-row-start: 2;
-  border: 2px solid blue; 
-}*/
+#roll-btn-player2:hover {
+  background-color: #2e2eb8;
+  color:  #ffff66;
+  transform: scale(1.05);
+}
+
+#roll-btn-player3 {
+  background-color: #d55d5d;
+  transition: 0.3s ease-in;
+}
+
+#roll-btn-player3:hover {
+  background-color: #b62f2f;
+  color:  #ffff66;
+  transform: scale(1.05);
+}
+
+#roll-btn-player4 {
+  background-color: #e600e6;
+  transition: 0.3s ease-in;
+}
+
+#roll-btn-player4:hover {
+  background-color: #990099;
+  color:  #ffff66;
+  transform: scale(1.05);
+}
+
+
+#set-space {
+  grid-column-start: board-end;
+  grid-column-end: set-line;
+  /* border: 2px solid blue;  */
+  background: #FFEEA2;
+  width: 280px;
+}
+
+ /* players */
 
 #player1-square{
-  width: 45px;
-  height: 10px;
-  margin: 2px auto 0;
-  background-color: red;
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin: 1px;
+  /* background-color: orange; */
+  content: url(./img/jeff-bezos.png);
 }
+
+#player2-square{
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin: 1px;
+  content: url(./img/bill-gates.png);
+}
+
+#player3-square{
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin: 1px;
+  content: url(./img/elon-musk.png);
+}
+
+#player4-square{
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin: 2px;
+  content: url(./img/Mark-Zuckerberg.png);
+}
+
+/* card and dice */
+
+
+.dice-container {
+  grid-column-start: set-line;
+  grid-column-end: page-end;
+  grid-row-start: 1;
+  right: 0;
+  width: 280px;
+  overflow: scroll;
+  /* border: 2px solid pink;  */
+}
+
 
 #register-text {
   padding: 0;
