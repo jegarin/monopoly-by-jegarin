@@ -3,7 +3,10 @@
 html, body {
   font-size: 20px;
   background: url(./img/monopolyPattern.jpg) paleturquoise;
-  
+}
+
+h1 {
+  font-size: 1.7rem;
 }
 
 h2 {
@@ -43,6 +46,7 @@ h2 {
   grid-template-rows: repeat(6, 100px);
   grid-gap: 3px;
   font-size: 1em;
+  position: relative;
   /* color: black; */
   /* border: 2px solid red; */
 }
@@ -77,6 +81,8 @@ div > #sqr-central {
   font-size: 0.55rem;
   font-weight: bold;
   margin: 0 auto;
+  display: block;
+  width: 90px;
 }
 
 .green-deed {
@@ -97,15 +103,12 @@ div > #sqr-central {
 }
 
 .square {
-  position: relative;
+  cursor: pointer;
 }
 
 
 /* game settings */
 
-/* #game-set{
-  background: #FFEEA2;
-} */
 
 .btn {
   font-size: 1.2em; 
@@ -179,6 +182,10 @@ div > #sqr-central {
   width: 280px;
 }
 
+#set-space:last-child{
+ padding-top: 30px;
+}
+
  /* players */
 
 #player1-square{
@@ -216,19 +223,73 @@ div > #sqr-central {
 
 /* card and dice */
 
-
-.dice-container {
+#dice-form-space {
+  display: grid;
   grid-column-start: set-line;
   grid-column-end: page-end;
+}
+
+.dice-container {
   grid-row-start: 1;
+  grid-row-end: 2;
   right: 0;
   width: 280px;
-  overflow: scroll;
+  position: relative;
   /* border: 2px solid pink;  */
 }
 
+.form-container {
+  grid-row-start: 2;
+  grid-row-end: auto;
+  right: 0;
+  width: 280px;
+  /* border: 2px solid pink;  */
+}
 
 #register-text {
   padding: 0;
   margin: 0 0 0 1015px;
+}
+
+.display-card-description {
+  position: absolute;
+  /* top: 470px; */
+  top: 350px;
+  left: 750px;
+  width: 280px;  
+  /* height: 135px; */
+  height: 235px;
+  border-style: outset;
+  border-color: black;
+  border-radius: 10px;
+  border-width: 2px;
+  background-color: whitesmoke;
+  animation-name: fadein;
+
+}
+
+.display-card-description > h1 {
+  font-size: 1.5rem;
+}
+
+.display-card-description > img {
+  height: 140px;
+  margin: -5px auto;
+}
+
+.card-text {
+  margin: 50px auto 0;
+  padding: 2px;  
+  font-size: 1.1rem;
+}
+
+br {
+  margin-top: 3px;
+}
+
+#display-action {
+  width: 280px;
+  height: 300px;
+  font-size: 0.8rem;
+  line-height: 1.5;
 }

@@ -11,7 +11,8 @@ const player3Cash = document.getElementById('player3-amount');
 //  Player 4 Name and Cash
 const player4Name = document.getElementById('player4-name');
 const player4Cash = document.getElementById('player4-amount');
-
+// Text Area
+const textArea = document.getElementById('display-action');
 
 const startBtn = document.getElementById('start-btn');
 startBtn.onclick = function() {
@@ -22,6 +23,8 @@ startBtn.onclick = function() {
   rollBtnP2.style.display = 'none';
   rollBtnP3.style.display = 'none';
   rollBtnP4.style.display = 'none';
+  textArea.value += `Let\'s Play guys!!!
+`;
 }
 
 const rollBtnP1 = document.getElementById('roll-btn-player1');
@@ -249,16 +252,16 @@ class Player {
     //invoke these fuctions after check  the square/card description and actions to be taken
     
     // this.updatePos(pos1, this.position);
-    if (this.name === 'Jeff') {
+    if (this.turn === 1) {
       this.updatePosPlayer1(pos1, this.position);
       this.updatePlayer1Cash();
-    } else if (this.name === 'Bill') {
+    } else if (this.turn === 2) {
       this.updatePosPlayer2(pos1, this.position);
       this.updatePlayer2Cash();
-    } else if (this.name === 'Elon') {
+    } else if (this.turn === 3) {
       this.updatePosPlayer3(pos1, this.position);
       this.updatePlayer3Cash();
-    } else if (this.name === 'Mark') {
+    } else if (this.turn === 4) {
       this.updatePosPlayer4(pos1, this.position);
       this.updatePlayer4Cash();
     }  
@@ -374,10 +377,14 @@ class Player {
 
   printCardName() {
     let cardName = square[this.position].name;
-    let displayCardName = document.getElementById('display-card-name');
-    let p = document.createElement('p');
-    p.innerHTML = 'You are at: ' + cardName;
-    displayCardName.appendChild(p);
+    // let displayCardName = document.getElementById('display-action');
+    // let p = document.createElement('p'); + cardName;
+    textArea.value += `Hey ${this.name} you are at: ${cardName}
+
+`;
+
+    // textArea.insertAdjacentHTML('beforeend', 'Hey ' + this.name + ' you are at: ' + cardName + '<br>');
+    // displayCardName.appendChild(p);
     // setTimeout(function() {displayCardName.removeChild(p);}, 3000);
   }
 
@@ -399,19 +406,23 @@ class Player {
   
 };
 
+
+const cardDescription = document.querySelectorAll('.square');
+
+
+cardDescription.forEach((card) => {
+  card.onmouseover = (e) => {
+    e.currentTarget.children[1].removeAttribute('hidden');
+  }
+})
+
+cardDescription.forEach((card) => {
+  card.onmouseout = (e) => {
+    e.currentTarget.children[1].setAttribute('hidden', ' ');
+  }
+})
+
 const player1 = new Player(1, 'Jeff', 'orange');
 const player2 = new Player(2, 'Bill', 'blue');
 const player3 = new Player(3, 'Elon', 'brown');
 const player4 = new Player(4, 'Mark', '#e600e6');
-
-
-
-// const titleDeed = document.querySelectorAll('.title-deed');
-// const centralSquare = document.getElementById('sqr-central');
-
-// for(let i = 0; i < titleDeed.length; i += 1) {
-//   titleDeed[i].addEventListener('click', function() {
-//     console.log('title deed mouseenter');
-//   });
-
-// }
