@@ -13,17 +13,28 @@ const player4Name = document.getElementById('player4-name');
 const player4Cash = document.getElementById('player4-amount');
 // Text Area
 const textArea = document.getElementById('display-action');
-
+// const body = document.getElementById('body-id');
 const startBtn = document.getElementById('start-btn');
+const playersList = document.querySelectorAll('.players');
+playersList.forEach((player) => {
+  player.style.display = 'none';
+})
+
+
 startBtn.onclick = function() {
   player1.setPlayer1();
   player2.setPlayer2();
   player3.setPlayer3();
   player4.setPlayer4();  
+  rollBtnP1.style.display = 'block';
   rollBtnP2.style.display = 'none';
   rollBtnP3.style.display = 'none';
   rollBtnP4.style.display = 'none';
-  textArea.value += `Let\'s Play guys!!!
+  playersList.forEach((player) => {
+    player.style.display = 'block';
+  })
+  textArea.value += `Let\'s Play!
+  
 `;
 }
 
@@ -225,6 +236,10 @@ class Player {
         this.updateCash(200);
         break;
 
+      case 'group-jail':
+        this.updateCash(-200);
+        break;
+
       case 'group-blue':
         console.log('this is house is on the blue zone. You must pay $100.');
         blueTitleDeed(this);
@@ -277,11 +292,24 @@ class Player {
   updateCash(amount) {
     console.log('the cash is: ' + this.cash + ' the amount is: ' + amount)
     this.cash += amount;
+    // if (amount < 0) {
+    //   amount -= 2 * amount;
+    //   textArea.value += `${this.name} pay ${amount}`
+    // } else if (amount > 0) {
+    //   textArea.value += `${this.name} you earned ${amount}`
+    // } else {
+    //   textArea.value += `${this.name} you earned ${amount}`
+    // };
   }
 
   moveAction(positions) {
     console.log('the position is: '+ this.position + ' the amount is: ' + positions);
     this.position += positions;
+  }
+  
+  moveToGo() {
+    this.position = 0;
+    this.updateCash(200);
   }
 
   checkIfPassedGo(pos1, pos2) {
@@ -426,3 +454,8 @@ const player1 = new Player(1, 'Jeff', 'orange');
 const player2 = new Player(2, 'Bill', 'blue');
 const player3 = new Player(3, 'Elon', 'brown');
 const player4 = new Player(4, 'Mark', '#e600e6');
+
+var textarea = document.getElementById('display-action');
+setInterval(function(){
+  textarea.scrollTop = textarea.scrollHeight;
+}, 100);

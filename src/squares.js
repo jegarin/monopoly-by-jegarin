@@ -13,22 +13,22 @@ class Square {
 
 let square = [];
 
-square[0] = new Square('Go', 'group-go');
+square[0] = new Square('Go Square', 'group-go');
 square[1] = new Square('Park Place', 'group-blue')
 square[2] = new Square('Community Chest, follow the instructions!', 'group-communitychest')
 square[3] = new Square('Broadwalk', 'group-blue')
 square[4] = new Square('Chance Opportunity. Pick a card and follow instruction', 'group-chance')
-square[5] = new Square('Jail, but just visiting!', 'group-jail') 
+square[5] = new Square('the Court, pay back $200.', 'group-jail') 
 square[6] = new Square('Illinois Avenue', 'group-red')
 square[7] = new Square('Community Chest, follow the instructions!', 'group-communitychest')
 square[8] = new Square('Indiana Avenue', 'group-red')
 square[9] = new Square('Income Tax Day! Pays $200 to the Bank', 'group-tax')
-square[10] = new Square('Free Parking. You won\'t receive cash, but no need to pay!', 'group-free')
+square[10] = new Square('Free Parking.', 'group-free')
 square[11] = new Square('Marvin Gardens', 'group-purple')
 square[12] = new Square('Community Chest, follow the instructions!', 'group-communitychest')
 square[13] = new Square('Ventnor Avenue', 'group-purple')
 square[14] = new Square('Atlantic Avenue', 'group-purple')
-square[15] = new Square('Go visit the Jail. Good Luck!', 'group-go-jail')
+square[15] = new Square('Go visit the Court. Good Luck!', 'group-go-jail')
 square[16] = new Square('Chance Opportunity. Pick a card and follow instruction', 'group-chance')
 square[17] = new Square('Pacific Avenue', 'group-green')
 square[18] = new Square('Luxury Tax Day! Pay $75 to the Bank', 'group-tax')
@@ -44,7 +44,7 @@ class Card {
 
 let chanceCards = [];
 
-chanceCards[0] = new Card ('Speeding fine $15.', -15);
+chanceCards[0] = new Card ('Speeding fine $15. Pay now!', -15);
 chanceCards[1] = new Card ('Bank pays you dividend of $50.', 50);
 chanceCards[2] = new Card ('Pay poor tax of $15.', -15);
 chanceCards[3] = new Card ('Go back three spaces.', -3);
@@ -69,6 +69,10 @@ function pickCommunityChest(player) {
   let randomCard = communityChestCards[randomNumber];
   console.log(randomCard);
   console.log('pickCommunityChest function invoked, check problem with amount in case is true')
+  textArea.value += `Community Card Instructions:
+${randomCard.name}
+
+`
   let result = player.updateCash(randomCard.amount);
   return result;
 }
@@ -76,13 +80,21 @@ function pickCommunityChest(player) {
 function pickChance(player) {
   let total = chanceCards.length;
   let randomNumber = Math.floor(Math.random() * total);
-  // let randomNumber = 3;
+  // let randomNumber = 4;
   let randomCard = chanceCards[randomNumber];
   console.log(randomCard);
+  textArea.value += `Chance card Instructions:
+${randomCard.name}
+
+`
   if(randomNumber === 3) {
     let result1 = player.moveAction(randomCard.amount);
     console.log('this is result1: ' + result1)
     return result1; //  insert a function to check the new current possition description and action;
+  } else if (randomNumber === 4) {
+    console.log('mover para GO square')
+    let result3 = player.moveToGo();
+    return result3;
   } else {
     let result2 = player.updateCash(randomCard.amount);
     console.log('this is result2: ' + result2)
@@ -93,19 +105,23 @@ function pickChance(player) {
 function luxuryTax(player) {
   let luxuryTaxCash = -75;
   player.updateCash(luxuryTaxCash);
+  textArea.value += `${player.name}! Pay your Luxury Tax.
+
+`
 }
 
 function incomeTax(player) {
   let incomeTaxCash = -200;
   player.updateCash(incomeTaxCash);
+  textArea.value += `${player.name}! Pay your Income Tax.
+
+`
 }
 
 function blueTitleDeed(player){
   // buy $1350 - rent $50
   // check if has ownwer ? pay rent : buy the property;
   if(player.position === 1){
-    console.log('Here is Park Place');
-    console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
@@ -114,42 +130,23 @@ function blueTitleDeed(player){
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-1')
       markOwner(player.turn, ownerMark);
-      console.log('Congrats! You bought a new property!')
+      textArea.value += `Congrats ${player.name}! You bought a new property for $350!
+
+`;
     } 
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-        switch (square[player.position].playerOwner) {
-          case 1:
-            player1.updateCash(70);
-            // console.log('p1 recebeu aluguel')
-            break;
-          case 2:
-            player2.updateCash(70);
-            // console.log('p2 recebeu aluguel')
-            break;
-          case 3:
-            player3.updateCash(70);
-            // console.log('p3 recebeu aluguel')
-            break;
-          case 4:
-            player4.updateCash(70);
-            // console.log('p4 recebeu aluguel')
-            break;
-          default:
-            console.log('error to pay the rent');
-        }
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
-    }
+      let rentFee = -70;
+      let rentFeePositive = rentFee - 2 * rentFee;
+      player.updateCash(rentFee);
+        payRent(player, rentFee, rentFeePositive);
   }
+}
   else {
-      console.log('Here is Broadwalk');
-      console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
@@ -158,17 +155,21 @@ function blueTitleDeed(player){
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-3')
       markOwner(player.turn, ownerMark);
-      console.log('Congrats! You bought a new property!')
+      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+
+`;
     }
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
+      let rentFee = -70
+      let rentFeePositive = rentFee - 2 * rentFee;
+      player.updateCash(rentFee);
+      payRent(player, rentFee, rentFeePositive);
     }
   }
 };
@@ -177,8 +178,6 @@ function redTitleDeed(player){
   // buy $1350 - rent $50
   // check if has ownwer ? pay rent : buy the property;
   if(player.position === 6){
-    console.log('Here is Illinois Avenue');
-    console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
@@ -187,22 +186,24 @@ function redTitleDeed(player){
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-6')
       markOwner(player.turn, ownerMark);
-      console.log('Congrats! You bought a new property!')
+      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+
+`;
     } 
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
+      let rentFee = -80;
+      let rentFeePositive = rentFee - 2 * rentFee;
+      player.updateCash(rentFee);
+      payRent(player, rentFee, rentFeePositive)
     }
   }
   else {
-    console.log('Indiana Avenue');
-    console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
     // buy the prop and mark as owner
     square[player.position].playerOwner = player.turn;
@@ -211,17 +212,21 @@ function redTitleDeed(player){
     //  paint the border with the owner color
     const ownerMark = document.querySelector('#sqr-8')
     markOwner(player.turn, ownerMark);
-    console.log('Congrats! You bought a new property!')
+    textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+
+`
     }
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
+      let rentFee = -80;
+      let rentFeePositive = rentFee - 2 * rentFee
+      player.updateCash(rentFee);
+      payRent(player, rentFee, rentFeePositive);
     }
   }
 }
@@ -230,8 +235,6 @@ function purpleTitleDeed(player){
   // buy $1350 - rent $50
   // check if has ownwer ? pay rent : buy the property;
   if(player.position === 11){
-    console.log('Here is Marvin Gardens');
-    console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
@@ -240,22 +243,24 @@ function purpleTitleDeed(player){
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-11')
       markOwner(player.turn, ownerMark);
-      console.log('Congrats! You bought a new property!')
+      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+
+`
     } 
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
+      let rentFee = -90;
+      let rentFeePositive = rentFee - 2 * rentFee;
+      player.updateCash(rentFee);
+      payRent(player, rentFee, rentFeePositive);
     }
   }
   else if (player.position === 13) {
-    console.log('Here is Ventnor Avenue');
-    console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
@@ -264,17 +269,21 @@ function purpleTitleDeed(player){
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-13')
       markOwner(player.turn, ownerMark);
-      console.log('Congrats! You bought a new property!')
+      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+
+`
     }
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
+      let rentFee = -90;
+      let rentFeePositive = rentFee - 2 * rentFee
+      player.updateCash(rentFee);
+      payRent(player, rentFee, rentFeePositive);
     }
   }
   else {
@@ -288,17 +297,21 @@ function purpleTitleDeed(player){
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-14')
       markOwner(player.turn, ownerMark);
-      console.log('Congrats! You bought a new property!')
+      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+
+`
     }
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
+      let rentFee = -90;
+      let rentFeePositive = rentFee - 2 * rentFee;
+      player.updateCash(rentFee);
+      payRent(player, rentFee, rentFeePositive);
     }
   }
 }
@@ -307,8 +320,6 @@ function greenTitleDeed(player){
   // buy $1350 - rent $50
   // check if has ownwer ? pay rent : buy the property;
   if(player.position === 17){
-    console.log('Here is Pacific Avenue');
-    console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
@@ -317,22 +328,24 @@ function greenTitleDeed(player){
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-17')
       markOwner(player.turn, ownerMark);
-      console.log('Congrats! You bought a new property!')
+      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+
+`
     } 
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
+      let rentFee = -100;
+      let rentFeePositive = rentFee - 2 * rentFee;
+      player.updateCash(rentFee);
+      payRent(player, rentFee, rentFeePositive)
     }
   }
   else {
-    console.log('Here is Pennsylvania Avenue');
-    console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
     // buy the prop and mark as owner
     square[player.position].playerOwner = player.turn;
@@ -341,17 +354,21 @@ function greenTitleDeed(player){
     //  paint the border with the owner color
     const ownerMark = document.querySelector('#sqr-19')
     markOwner(player.turn, ownerMark);
-    console.log('Congrats! You bought a new property!')
+    textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+
+`
     }
     else if(square[player.position].playerOwner === player.turn)  {
-      console.log('This is your property.');
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+
+`
     }
     else {
       //pay rent
-      player.updateCash(-70);
-      console.log('pay the rent!')
-      console.log(square[player.position].playerOwner)
-      console.log(player.name)
+      let rentFee = -100;
+      let rentFeePositive = rentFee - 2 * rentFee;
+      player.updateCash(rentFee);
+      payRent(player, rentFee, rentFeePositive);
     }
   }
 }
@@ -374,4 +391,35 @@ function markOwner(n1, n2) {
     default :
         pn2.style.border = '3px solid black';
   };
+}
+
+function payRent(player, rentFee, rentFeePositive) {
+  switch (square[player.position].playerOwner) {
+    case 1:
+      player1.updateCash(rentFeePositive);
+      textArea.value += `${player.name}, too late! Pay the rent ($${rentFeePositive}) to ${player1.name}
+
+`
+      break;
+    case 2:
+      player2.updateCash(rentFeePositive);
+      textArea.value += `${player.name}, too late! Pay the rent ($${rentFeePositive}) to ${player2.name}
+
+`
+      break;
+    case 3:
+      player3.updateCash(rentFeePositive);
+      textArea.value += `${player.name}, too late! Pay the rent ($${rentFeePositive}) to ${player3.name}
+
+`
+      break;
+    case 4:
+      player4.updateCash(rentFeePositive);
+      textArea.value += `${player.name}, too late! Pay the rent ($${rentFeePositive}) to ${player4.name}
+
+`
+      break;
+    default:
+      console.log('error to pay the rent');
+  }
 }
