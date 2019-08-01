@@ -15,17 +15,17 @@ let square = [];
 
 square[0] = new Square('Go Square', 'group-go');
 square[1] = new Square('Park Place', 'group-blue')
-square[2] = new Square('Community Chest, follow the instructions!', 'group-communitychest')
-square[3] = new Square('Broadwalk', 'group-blue')
+square[2] = new Square('Community Chest, pick a card and follow instructions!', 'group-communitychest')
+square[3] = new Square('Boardwalk', 'group-blue')
 square[4] = new Square('Chance Opportunity. Pick a card and follow instruction', 'group-chance')
 square[5] = new Square('the Court, pay back $200.', 'group-jail') 
 square[6] = new Square('Illinois Avenue', 'group-red')
-square[7] = new Square('Community Chest, follow the instructions!', 'group-communitychest')
+square[7] = new Square('Community Chest, pick a card and follow instructions!', 'group-communitychest')
 square[8] = new Square('Indiana Avenue', 'group-red')
 square[9] = new Square('Income Tax Day! Pays $200 to the Bank', 'group-tax')
 square[10] = new Square('Free Parking.', 'group-free')
 square[11] = new Square('Marvin Gardens', 'group-purple')
-square[12] = new Square('Community Chest, follow the instructions!', 'group-communitychest')
+square[12] = new Square('Community Chest, pick a card and follow instructions!', 'group-communitychest')
 square[13] = new Square('Ventnor Avenue', 'group-purple')
 square[14] = new Square('Atlantic Avenue', 'group-purple')
 square[15] = new Square('Go visit the Court. Good Luck!', 'group-go-jail')
@@ -44,9 +44,9 @@ class Card {
 
 let chanceCards = [];
 
-chanceCards[0] = new Card ('Speeding fine $15. Pay now!', -15);
-chanceCards[1] = new Card ('Bank pays you dividend of $50.', 50);
-chanceCards[2] = new Card ('Pay poor tax of $15.', -15);
+chanceCards[0] = new Card ('Speeding fine $150. Pay now!', -150);
+chanceCards[1] = new Card ('Bank pays you dividend of $500.', 500);
+chanceCards[2] = new Card ('Pay poor tax of $150.', -150);
 chanceCards[3] = new Card ('Go back three spaces.', -3);
 chanceCards[4] = new Card ('Advance to GO and collect $200.', 200);
 
@@ -60,8 +60,8 @@ communityChestCards[4] = new Card ('Holiday fund matures. Receive $100.', 100);
 communityChestCards[5] = new Card ('You inherit $100.', 100);
 communityChestCards[6] = new Card ('Receive $25 consultancy fee.', 25);
 communityChestCards[7] = new Card ('Pay hospital fees of $100.', -100);
-communityChestCards[8] = new Card ('Pay school fees of $50.', -50);
-communityChestCards[9] = new Card ('Doctor\'s fee. Pay $50.', -50);
+communityChestCards[8] = new Card ('Pay school fees of $450.', -450);
+communityChestCards[9] = new Card ('Doctor\'s fee. Pay $450.', -450);
 
 function pickCommunityChest(player) {
   let total = communityChestCards.length;
@@ -71,7 +71,7 @@ function pickCommunityChest(player) {
   console.log('pickCommunityChest function invoked, check problem with amount in case is true')
   textArea.value += `Community Card Instructions:
 ${randomCard.name}
-
+  
 `
   let result = player.updateCash(randomCard.amount);
   return result;
@@ -91,9 +91,8 @@ ${randomCard.name}
     let result1 = player.moveAction(randomCard.amount);
     console.log('this is result1: ' + result1)
     return result1; //  insert a function to check the new current possition description and action;
-  } else if (randomNumber === 4) {
-    console.log('mover para GO square')
-    let result3 = player.moveToGo();
+  } if (randomNumber === 4) {
+      let result3 = player.moveToGo();
     return result3;
   } else {
     let result2 = player.updateCash(randomCard.amount);
@@ -103,7 +102,7 @@ ${randomCard.name}
 }
 
 function luxuryTax(player) {
-  let luxuryTaxCash = -75;
+  let luxuryTaxCash = -85;
   player.updateCash(luxuryTaxCash);
   textArea.value += `${player.name}! Pay your Luxury Tax.
 
@@ -111,7 +110,7 @@ function luxuryTax(player) {
 }
 
 function incomeTax(player) {
-  let incomeTaxCash = -200;
+  let incomeTaxCash = -230;
   player.updateCash(incomeTaxCash);
   textArea.value += `${player.name}! Pay your Income Tax.
 
@@ -119,7 +118,7 @@ function incomeTax(player) {
 }
 
 function blueTitleDeed(player){
-  // buy $1350 - rent $50
+  // price $350 - rent $35
   // check if has ownwer ? pay rent : buy the property;
   if(player.position === 1){
     if(!square[player.position].hasOwner) {
@@ -135,7 +134,7 @@ function blueTitleDeed(player){
 `;
     } 
     else if(square[player.position].playerOwner === player.turn)  {
-      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent
+      textArea.value += `${player.name}, this is your property. Wait another millionaire land here to pay the rent.
 `
     }
     else {
@@ -151,11 +150,11 @@ function blueTitleDeed(player){
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
       square[player.position].hasOwner = true
-      player.updateCash(-750);
+      player.updateCash(-400);
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-3')
       markOwner(player.turn, ownerMark);
-      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+      textArea.value += `Congrats ${player.name}! You bought a new property for $400!
 
 `;
     }
@@ -166,7 +165,7 @@ function blueTitleDeed(player){
     }
     else {
       //pay rent
-      let rentFee = -70
+      let rentFee = -100
       let rentFeePositive = rentFee - 2 * rentFee;
       player.updateCash(rentFee);
       payRent(player, rentFee, rentFeePositive);
@@ -175,18 +174,17 @@ function blueTitleDeed(player){
 };
 
 function redTitleDeed(player){
-  // buy $1350 - rent $50
   // check if has ownwer ? pay rent : buy the property;
   if(player.position === 6){
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
       square[player.position].hasOwner = true; 
-      player.updateCash(-350);
+      player.updateCash(-240);
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-6')
       markOwner(player.turn, ownerMark);
-      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+      textArea.value += `Congrats ${player.name}! You bought a new property for $240!
 
 `;
     } 
@@ -197,7 +195,7 @@ function redTitleDeed(player){
     }
     else {
       //pay rent
-      let rentFee = -80;
+      let rentFee = -48;
       let rentFeePositive = rentFee - 2 * rentFee;
       player.updateCash(rentFee);
       payRent(player, rentFee, rentFeePositive)
@@ -208,11 +206,11 @@ function redTitleDeed(player){
     // buy the prop and mark as owner
     square[player.position].playerOwner = player.turn;
     square[player.position].hasOwner = true
-    player.updateCash(-150);
+    player.updateCash(-220);
     //  paint the border with the owner color
     const ownerMark = document.querySelector('#sqr-8')
     markOwner(player.turn, ownerMark);
-    textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+    textArea.value += `Congrats ${player.name}! You bought a new property for $220!
 
 `
     }
@@ -223,7 +221,7 @@ function redTitleDeed(player){
     }
     else {
       //pay rent
-      let rentFee = -80;
+      let rentFee = -44;
       let rentFeePositive = rentFee - 2 * rentFee
       player.updateCash(rentFee);
       payRent(player, rentFee, rentFeePositive);
@@ -232,18 +230,17 @@ function redTitleDeed(player){
 }
 
 function purpleTitleDeed(player){
-  // buy $1350 - rent $50
   // check if has ownwer ? pay rent : buy the property;
   if(player.position === 11){
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
       square[player.position].hasOwner = true; 
-      player.updateCash(-350);
+      player.updateCash(-280);
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-11')
       markOwner(player.turn, ownerMark);
-      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+      textArea.value += `Congrats ${player.name}! You bought a new property for $280!
 
 `
     } 
@@ -254,7 +251,7 @@ function purpleTitleDeed(player){
     }
     else {
       //pay rent
-      let rentFee = -90;
+      let rentFee = -56;
       let rentFeePositive = rentFee - 2 * rentFee;
       player.updateCash(rentFee);
       payRent(player, rentFee, rentFeePositive);
@@ -265,11 +262,11 @@ function purpleTitleDeed(player){
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
       square[player.position].hasOwner = true
-      player.updateCash(-110);
+      player.updateCash(-260);
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-13')
       markOwner(player.turn, ownerMark);
-      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+      textArea.value += `Congrats ${player.name}! You bought a new property for $260!
 
 `
     }
@@ -280,24 +277,22 @@ function purpleTitleDeed(player){
     }
     else {
       //pay rent
-      let rentFee = -90;
+      let rentFee = -52;
       let rentFeePositive = rentFee - 2 * rentFee
       player.updateCash(rentFee);
       payRent(player, rentFee, rentFeePositive);
     }
   }
   else {
-      console.log('Here is Atlantic Avenue');
-      console.log(square[player.position].hasOwner)
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
       square[player.position].hasOwner = true
-      player.updateCash(-110);
+      player.updateCash(-260);
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-14')
       markOwner(player.turn, ownerMark);
-      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+      textArea.value += `Congrats ${player.name}! You bought a new property for $260!
 
 `
     }
@@ -308,7 +303,7 @@ function purpleTitleDeed(player){
     }
     else {
       //pay rent
-      let rentFee = -90;
+      let rentFee = -52;
       let rentFeePositive = rentFee - 2 * rentFee;
       player.updateCash(rentFee);
       payRent(player, rentFee, rentFeePositive);
@@ -317,18 +312,17 @@ function purpleTitleDeed(player){
 }
 
 function greenTitleDeed(player){
-  // buy $1350 - rent $50
   // check if has ownwer ? pay rent : buy the property;
   if(player.position === 17){
     if(!square[player.position].hasOwner) {
       // buy the prop and mark as owner
       square[player.position].playerOwner = player.turn;
       square[player.position].hasOwner = true; 
-      player.updateCash(-350);
+      player.updateCash(-320);
       //  paint the border with the owner color
       const ownerMark = document.querySelector('#sqr-17')
       markOwner(player.turn, ownerMark);
-      textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+      textArea.value += `Congrats ${player.name}! You bought a new property for $320!
 
 `
     } 
@@ -339,7 +333,7 @@ function greenTitleDeed(player){
     }
     else {
       //pay rent
-      let rentFee = -100;
+      let rentFee = -64;
       let rentFeePositive = rentFee - 2 * rentFee;
       player.updateCash(rentFee);
       payRent(player, rentFee, rentFeePositive)
@@ -350,11 +344,11 @@ function greenTitleDeed(player){
     // buy the prop and mark as owner
     square[player.position].playerOwner = player.turn;
     square[player.position].hasOwner = true
-    player.updateCash(-1150);
+    player.updateCash(-300);
     //  paint the border with the owner color
     const ownerMark = document.querySelector('#sqr-19')
     markOwner(player.turn, ownerMark);
-    textArea.value += `Congrats ${player.name}! You bought a new property for $750!
+    textArea.value += `Congrats ${player.name}! You bought a new property for $300!
 
 `
     }
@@ -365,7 +359,7 @@ function greenTitleDeed(player){
     }
     else {
       //pay rent
-      let rentFee = -100;
+      let rentFee = -60;
       let rentFeePositive = rentFee - 2 * rentFee;
       player.updateCash(rentFee);
       payRent(player, rentFee, rentFeePositive);

@@ -19,7 +19,8 @@
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
-      <span class="close">&times;</span>
+        <!-- &times; -->
+      <!-- <span class="close"> OK, got it!</span> -->
       <h2>Welcome to the Monopoly Game!</h2>
     </div>
     <div class="modal-body">
@@ -32,6 +33,7 @@
         <li>Mark: <img src="./img/Mark-Zuckerberg.png"></li>
       </ul>
       <p>Observation: Because it might be implossible for them to go to JAIL, we needed to change it to COURT</p>
+      <p class="close"> OK, got it!</p>
     </div>
     <div class="modal-footer">
       <p>Property Trading Game from Parker Brothers <span>&#174;</span></p>
@@ -47,31 +49,35 @@
             <div class="free-parking square" id="sqr-10"><h2>FREE PARKING</h2>
               <div hidden class="display-card-description" >
                   <h1>Free Parking</h1>
+                  <img src="./img/free-parking cropped.png" alt="free parking logo" id="free-parking-logo"></img>
                   <p class="card-text">No need to pay! Wait your next time!</p>
               </div>
             </div>
             <div class="title-deed purple-deed square" id="sqr-11"><span class="square-title">Marvin Gardens</span>
               <div hidden class="display-card-description" >
+                  <p>Title Deed</p>
                   <h1>Marvin Gardens</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p>
+                  <p class="card-text">Price $280.<br>Rent $56.</p>
               </div>
             </div>
             <div class="community-chest square" id="sqr-12"><span class="square-title">Community Chest</span>
               <div hidden class="display-card-description" >
                   <h1>Community Chest</h1>
-                  <p class="card-text">Follow the instructions from the card. <br> Good Luck!</p>
+                  <p class="card-text">Follow instructions on top card<br>Good Luck!</p>
               </div>
             </div>
             <div class="title-deed purple-deed square" id="sqr-13"><span class="square-title">Ventnor Avenue</span>
               <div hidden class="display-card-description" >
+                  <p>Title Deed</p>
                   <h1>Ventnor Avenue</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p>
+                  <p class="card-text">Price $260.<br>Rent $52.</p>
               </div>
             </div>
             <div class="title-deed purple-deed square" id="sqr-14"><span class="square-title">Atlantic Avenue</span>
               <div hidden class="display-card-description" >
+                  <p>Title Deed</p>
                   <h1>Atlantic Avenue</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p>
+                  <p class="card-text">Price $260.<br> Rent $52.</p>
               </div>
             </div>
             <div class="go-to-jail square" id="sqr-15"><h2>VISIT COURT</h2>
@@ -95,21 +101,23 @@
             </div>
             <div class="title-deed red-deed square" id="sqr-8"><span class="square-title">Indiana Avenue</span>
               <div hidden class="display-card-description" >
+                  <p>Title Deed</p>
                   <h1>Indiana Avenue</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p>
+                  <p class="card-text">Price $220. <br> Rent $44.</p>
               </div>
             </div>
             <div class="title-deed green-deed square" id="sqr-17"><span class="square-title">Pacific Avenue</span>
               <div hidden class="display-card-description" >
+                  <p>Title Deed</p>
                   <h1>Pacific Avenue</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p>
+                  <p class="card-text">Price $300.<br>Rent $60.</p>
               </div>
             </div>
             <div id="sqr-central"></div>
-            <div class="community-chest square" id="sqr-7"><span class="square-title">Community Chest</span><br>
+            <div class="community-chest square" id="sqr-7"><span class="square-title">Community Chest</span>
               <div hidden class="display-card-description" >
                   <h1>Community Chest</h1>
-                  <p class="card-text">Follow the instructions from the card. <br> Good Luck!</p>
+                  <p class="card-text">Follow instructions on top card<br>Good Luck!</p>
               </div>
             </div>
             <div class="pay-tax square" id="sqr-18"><h2>LUXURY<br>TAX</h2>
@@ -120,20 +128,22 @@
             </div>
             <div class="title-deed red-deed square" id="sqr-6"><span class="square-title">Illinois Avenue</span>
               <div hidden class="display-card-description" >
+                  <p>Title Deed</p>
                   <h1>Illinois Avenue</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p>
+                  <p class="card-text">Price $240.<br>Rent $48.</p>
               </div>
             </div>
             <div class="title-green green-deed square" id="sqr-19"><span class="square-title">Pennsylvania Avenue</span>
               <div hidden class="display-card-description" >
+                  <p>Title Deed</p>
                   <h1>Pennsylvania Avenue</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p>
+                  <p class="card-text">Price $320.<br>Rent $64.</p>
               </div>
             </div>
             <div class="in-jail square" id="sqr-5"><h2>VISITING COURT</h2>
               <div hidden class="display-card-description" >
                   <h1>Court</h1>
-                  <p class="card-text">Pay back your $200 you earned when passed the GO square.</p>
+                  <p class="card-text">Pay back your $200.</p>
               </div>
             </div>
             <div class="chance square" id="sqr-4"><span class="square-title">Chance</span>
@@ -144,27 +154,28 @@
             </div>
             <div class="title-deed blue-deed square" id="sqr-3"><span class="square-title">Broadwalk</span>
               <div hidden class="display-card-description" >
+                  <p>Title Deed</p>
                   <h1>Broadwalk</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p> 
+                  <p class="card-text">Price $400.<br>Rent $100.</p> 
               </div>
             </div>
             <div class="community-chest square" id="sqr-2"><span class="square-title">Community Chest</span>
               <div hidden class="display-card-description" >
                   <h1>Community Chest</h1>
-                  <p class="card-text">Follow the instructions from the card. <br> Good Luck!</p>
+                  <p class="card-text">Follow instructions on top card<br>Good Luck!</p>
               </div>
             </div>
             <div class="title-deed blue-deed square" id="sqr-1"><span class="square-title">Park Place</span>
               <div hidden class="display-card-description" >
                   <p>Title Deed</p>
                   <h1>Park Place</h1>
-                  <p class="card-text">Buy for $16 <br> Rent $150</p>
-                  <p>With 1 House  $150. <br> With 2 Houses  $1000 <br> Houses cost $200 each</p>
+                  <p class="card-text">Price $350. <br> Rent $70.</p>
               </div>
             </div>
             <div class="go-sqr square" id="sqr-0"><h2>GO</h2>
               <div hidden class="display-card-description" >
                 <h1>This is the GO square!</h1>
+                <img src="./img/go-arrow-logo.png" alt="arrow logo" id="arrow-logo"></img>
                 <p class="card-text">Pass or land here and receive $200! </p>
               </div>
             </div>
@@ -197,47 +208,17 @@
       
         </div>
         <div id="dice-form-space">
-          <div class="dice-container" id="display-dice-result" > <p>Dice result:</p>
-          </div>
-          
-          <!-- <section class="container">
-              <div id="cube">
-                <div class="front">
-                  <span class="dot dot1"></span>
-                </div>
-                <div class="back">
-                  <span class="dot dot1"></span>
-                  <span class="dot dot2"></span>
-                </div>
-                <div class="right">
-                  <span class="dot dot1"></span>
-                  <span class="dot dot2"></span>  
-                  <span class="dot dot3"></span>
-                </div>
-                <div class="left">
-                  <span class="dot dot1"></span>
-                  <span class="dot dot2"></span>  
-                  <span class="dot dot3"></span>
-                  <span class="dot dot4"></span>
-                </div>
-                <div class="top">
-                  <span class="dot dot1"></span>
-                  <span class="dot dot2"></span>  
-                  <span class="dot dot3"></span>
-                  <span class="dot dot4"></span>
-                  <span class="dot dot5"></span>
-                </div>
-                <div class="bottom">
-                  <span class="dot dot1"></span>
-                  <span class="dot dot2"></span>  
-                  <span class="dot dot3"></span>
-                  <span class="dot dot4"></span>
-                  <span class="dot dot5"></span>
-                  <span class="dot dot6"></span>
-                </div>
+          <div class="dice-container" id="display-dice-result" >
+            <div id="dice">
+                <div id="dot1"></div>
+                <div id="dot2"></div>
+                <div id="dot3"></div>
+                <div id="dot4"></div>
+                <div id="dot5"></div>
+                <div id="dot6"></div>
+                <div id="dot7"></div>
               </div>
-            </section> -->
-      
+          </div>
       
           <div class="form-container">
               <textarea readonly autofocus id="display-action">
@@ -254,6 +235,7 @@
       
       <script type="text/javascript" src="./src/modal.js"></script>
       <script type="text/javascript" src="./src/squares.js"></script> 
-      <script type="text/javascript" src="./src/myGame.js"></script> 
+      <script type="text/javascript" src="./src/myGame.js"></script>
+      <script type="text/javascript" src="./src/dice.js"></script> 
 </body>
 </html>

@@ -21,7 +21,7 @@ p {
 }
 
 .square p {
-  font-size: 0.8rem;
+  font-size: 1.1rem;
 }
 
 .players {
@@ -242,6 +242,7 @@ div > #sqr-central {
   display: grid;
   grid-column-start: set-line;
   grid-column-end: page-end;
+  position: relative;
 }
 
 .dice-container {
@@ -288,13 +289,17 @@ div > #sqr-central {
 
 .display-card-description > img {
   height: 140px;
-  margin: -5px auto;
+  margin: 5px auto;
+}
+#arrow-logo {
+  height: 30px;
+  margin: 5px 50px 0 0;
 }
 
 .card-text {
-  margin: 30px auto 0;
-  padding: 2px;  
-  font-size: 1.1rem;
+  margin: 50px auto 0;
+  padding: 2px;
+  line-height: 1.5;
 }
 
 br {
@@ -306,7 +311,7 @@ textarea {
   overflow: auto;
   background-color: #FFEEA2;
   width: 280px;
-  height: 450px;
+  height: 400px;
   margin-bottom: 0; 
   font-size: 0.8rem;
   line-height: 1.5;
@@ -356,17 +361,25 @@ textarea {
 
 /* The Close Button */
 .close {
-  color: white;
-  float: right;
+  color: black;
+  /* float: right; */
+  text-align: center;
   font-size: 28px;
   font-weight: bold;
+  margin: 10px auto 0;
+  border: 2px solid #000;
+  border-radius: 10%;
+  background-color: #40790b;
+  width: 150px;
 }
 
 .close:hover,
 .close:focus {
   color: #000;
+  background-color: #6bd30a;
   text-decoration: none;
   cursor: pointer;
+  scale: 1.2;
 }
 
 .modal-header {
@@ -380,6 +393,7 @@ textarea {
 .modal-body {
   padding: 22px 16px;
   line-height: 1.5;
+  border: 2px solid black;
 }
 
 .modal-body img {
@@ -387,10 +401,114 @@ textarea {
   height: 50px;
 }
 
+
 .modal-footer {
   padding: 2px 16px;
   background-color: #e61710;
   color: white;
   font-family: Mako, Arial, Helvetica, sans-serif;
   text-align: end;
+}
+
+
+/* Dice CSS */
+
+#dice {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  background-color: #fefefe;
+  /* margin-left: 1050px; */
+  border-radius: 20px;
+  border: 2px solid #e61710;
+
+  
+  display: block;
+}
+
+#dice img {
+  width: 22px;
+  height: 22px;
+  text-align: center;
+}
+
+#dot1 {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+#dot2 {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-left: 15px;
+  margin-top: 72.5px;
+}
+
+#dot3 {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-left: 15px;
+  margin-top: 130px;
+}
+
+#dot4 {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-left: 130px;
+  margin-top: 15px;
+}
+
+#dot5 {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-left: 130px;
+  margin-top: 72.5px;
+}
+
+#dot6 {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-left: 130px;
+  margin-top: 130px;
+}
+
+#dot7 {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-left: 72.5px;
+  margin-top: 72.5px;
+}
+
+#dice > div {
+  animation-name: fadein;
+  animation-duration: 2s;
+  transition-timing-function: ease-in;
+}
+
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }

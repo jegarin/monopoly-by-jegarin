@@ -201,7 +201,8 @@ class Player {
   }
 
   move() {
-    const dice = 1 + Math.floor(Math.random() * 6);
+    // const dice = 1 + Math.floor(Math.random() * 6);
+    let dice = rollTheDice();
     console.log(dice);
     const pos1 = this.position;
     this.position = (this.position + dice) % square.length;
@@ -230,6 +231,7 @@ class Player {
 
       case 'group-go-jail':
         this.moveAction(-10);
+        this.updateCash(-400);
         break;
 
       case 'group-go':
@@ -285,13 +287,30 @@ class Player {
     this.checkIfPassedGo(pos1, this.position);
 
     
-    // this.checkGameOver();
+    this.checkGameOver();
   
   };
 
   updateCash(amount) {
     console.log('the cash is: ' + this.cash + ' the amount is: ' + amount)
     this.cash += amount;
+    switch(this.turn === 1) {
+      case 1:
+        this.updatePlayer1Cash();
+        break;
+      case 2:
+        this.updatePlayer2Cash();
+        break;
+      case 3:
+        this.updatePlayer3Cash();
+        break;
+      case 4:
+        this.updatePlayer4Cash();
+        break;
+      default:
+        console.log('error updateCash function');
+
+    }
     // if (amount < 0) {
     //   amount -= 2 * amount;
     //   textArea.value += `${this.name} pay ${amount}`
@@ -423,11 +442,15 @@ class Player {
   checkGameOver() {
     if (this.cash <= 0) {
       // console.log('Hey ' + ${this.name} + '! You lost all you money! LOL. See you next time.');
-      alert('Hey ' + this.name + '! You lost all you money! LOL. See you next time.');
+      alert('Hey ' + this.name + '! You lost all you money! LOL. Keep receiving the rent if you have any property.');
       if(this.turn === 1) {
-        const childEl = document.querySelector('#player1-name').parentElement.parentElement;
-        const parentEl = childEl.parentElement;
-        parentEl.removeChild(childEl);
+        player1Name.style.color = 'gray';
+      } else if(this.turn === 2) {
+        player2Name.style.color = 'gray';
+      } else if(this.turn === 3) {
+        player3Name.style.color = 'gray';
+      } else {
+        player4Name.style.color = 'gray';
       }
     }
   }
